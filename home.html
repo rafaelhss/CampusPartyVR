@@ -18,6 +18,13 @@
         <img id="lightswitch" src="img/switch.png">
     </a-assets>
 
+    <a-assets>
+        <img id="logo"
+             src="img/logo.jpg">
+    </a-assets>
+
+    <a-sphere src="#logo" radius="5" position="-8 10 -8"></a-sphere>
+
 
     <a-entity class="switch"  geometry="primitive: box" material="src: #lightswitch" scale="1 1 0.2">
         <a-event name="mouseenter" rotation="180 0 0"></a-event>
