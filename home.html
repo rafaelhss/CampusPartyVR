@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+
+</head>
+<body>
+
+<a-scene>
+    <a-entity position="0 1.8 8">
+        <a-camera id="camera">
+            <a-cursor color="#4CC3D9"></a-cursor>
+        </a-camera>
+    </a-entity>
+
+    <a-assets >
+        <img id="lightswitch" src="img/switch.png">
+    </a-assets>
+
+
+    <a-entity class="switch"  geometry="primitive: box" material="src: #lightswitch" scale="1 1 0.2">
+        <a-event name="mouseenter" rotation="180 0 0"></a-event>
+        <a-event name="mouseleave" rotation="0 0 0"></a-event>
+    </a-entity>
+
+    <a-assets>
+        <img id="corpo" src="img/negao.png">
+        <img id="skyTexture"
+             src="img/fundo.jpg">
+    </a-assets>
+
+
+    <a-box id="negao" transparen="true" opacity="0.5" src="#corpo" position="8 -3 8" rotation="0 6 -5" scale="2 6 2"></a-box>
+
+    <a-sky color="#000"></a-sky>
+    <a-sky id="fundo" opacity="0.05" src="#skyTexture"></a-sky>
+</a-scene>
+</body>
+<script>
+
+    var aceso = false;
+
+
+    var luz = function(opacity) {
+
+        var boxEl = document.getElementById('fundo');
+        /* We change the brightness of the canvas itself */
+        boxEl.setAttribute('opacity', opacity);
+
+
+        var negao = document.getElementById('negao');
+        /* We change the brightness of the canvas itself */
+        negao.setAttribute('opacity', opacity);
+
+    }
+
+    var liga = function(){
+        luz(0.99);
+        aceso = true;
+    }
+
+    var desliga = function(){
+        luz(0.05);
+        aceso = false;
+    }
+
+
+    var boxEl = document.querySelector('.switch');
+
+    boxEl.addEventListener('mouseenter', function () {
+        boxEl.setAttribute('rotation', {x: 180, y: 0, z: 0});
+        if(aceso){
+            desliga()
+        }
+        else
+        {
+            liga()
+        }
+
+    });
+
+
+
+</script>
+</html>
